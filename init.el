@@ -15,33 +15,33 @@
   (load bootstrap-file nil 'nomessage))
 
 (use-package
- emacs
- :config
- (require 'iso-transl)
- (require 'hl-line)
- (setq ls-lisp-dirs-first t)
- (setq ls-lisp-use-insert-directory-program nil)
- (setq ring-bell-function 'ignore)
- (setq auto-save-default nil)
- (setq lisp-indent-offset 2)
- (setq linum-format "%d  ")
- (setq enable-recursive-minibuffers t)
- (setq backup-directory-alist `(("." . "~/.emacs_backups")))
- (setq backup-by-copying t)
- (setq delete-old-versions t kept-new-versions 6 kept-old-versions 2 version-control t)
- (setq whitespace-display-mappings '((newline-mark 10 [172 10]) (indentation 32 [183] [46])))
- (global-display-line-numbers-mode 1)
- (set-frame-font "Inconsolata 19" nil t)
- (menu-bar-mode -1)
- (scroll-bar-mode -1)
- (tool-bar-mode -1)
+  emacs
+  :config
+  (require 'iso-transl)
+  (require 'hl-line)
+  (setq ls-lisp-dirs-first t)
+  (setq ls-lisp-use-insert-directory-program nil)
+  (setq ring-bell-function 'ignore)
+  (setq auto-save-default nil)
+  (setq lisp-indent-offset 2)
+  (setq linum-format "%d  ")
+  (setq enable-recursive-minibuffers t)
+  (setq backup-directory-alist `(("." . "~/.emacs_backups")))
+  (setq backup-by-copying t)
+  (setq delete-old-versions t kept-new-versions 6 kept-old-versions 2 version-control t)
+  (setq whitespace-display-mappings '((newline-mark 10 [172 10]) (indentation 32 [183] [46])))
+  (global-display-line-numbers-mode 1)
+  (set-frame-font "Inconsolata 19" nil t)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
 
- (defun kill-all-buffers ()
-   "Reset Emacs to a clean buffer state."
-   (interactive)
-   (mapc 'kill-buffer (buffer-list)))
+  (defun kill-all-buffers ()
+    "Reset Emacs to a clean buffer state."
+    (interactive)
+    (mapc 'kill-buffer (buffer-list)))
 
- (global-set-key (kbd "C-c k") 'kill-all-buffers))
+  (global-set-key (kbd "C-c k") 'kill-all-buffers))
 
 (use-package flatui-theme
   :straight t
