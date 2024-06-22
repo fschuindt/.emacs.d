@@ -29,7 +29,6 @@
   (setq backup-directory-alist `(("." . "~/.emacs_backups")))
   (setq backup-by-copying t)
   (setq delete-old-versions t kept-new-versions 6 kept-old-versions 2 version-control t)
-  (setq whitespace-display-mappings '((newline-mark 10 [172 10]) (indentation 32 [183] [46])))
   (global-display-line-numbers-mode 1)
   (set-frame-font "Inconsolata 19" nil t)
   (menu-bar-mode -1)
@@ -178,4 +177,5 @@
   :custom
   (whitespace-style '(newline-mark tab-mark))
   :config
+  (setq whitespace-display-mappings '((newline-mark 10 [172 10]) (indentation 32 [183] [46])))
   (whitespace-mode t))
