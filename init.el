@@ -169,7 +169,7 @@
          (dired-mode . diff-hl-dired-mode)
          (dired-mode . dired-hide-details-mode))
   :config
-  (add-hook 'after-save-hook 'diff-hl-update))
+  (add-hook 'before-save-hook 'diff-hl-update))
 
 (use-package whitespace
   :straight t
