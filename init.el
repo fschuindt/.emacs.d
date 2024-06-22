@@ -165,9 +165,11 @@
 (use-package diff-hl
   :straight t
   :hook ((prog-mode . diff-hl-mode)
-	 (text-mode . diff-hl-mode)
-	 (dired-mode . diff-hl-dired-mode)
-	 (dired-mode . dired-hide-details-mode)))
+         (text-mode . diff-hl-mode)
+         (dired-mode . diff-hl-dired-mode)
+         (dired-mode . dired-hide-details-mode))
+  :config
+  (add-hook 'after-save-hook 'diff-hl-update))
 
 (use-package whitespace
   :straight t
