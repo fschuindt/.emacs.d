@@ -147,8 +147,7 @@
 
 (use-package elixir-mode
   :straight t
-  :hook ((elixir-mode . eglot-ensure)
-        (before-save . eglot-format)))
+  :hook ((elixir-mode . eglot-ensure)))
 
 (use-package eglot
   :ensure nil
@@ -159,12 +158,11 @@
     'elixir-mode-hook 'eglot-ensure)
   (add-hook
     'heex-mode-hook 'eglot-ensure)
-  (add-hook
-    'elixir-mode-hook (lambda () (add-hook 'before-save-hook 'eglot-format-buffer nil t)))
   :bind
   (:map eglot-mode-map
         ("M-TAB" . xref-find-definitions)
-        ("M-s" . xref-find-references)))
+        ("M-s" . xref-find-references)
+        ("C-c a" . eglot-format-buffer)))
 
 (use-package sideline-flymake
   :straight t
