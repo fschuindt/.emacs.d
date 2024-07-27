@@ -164,12 +164,14 @@
         ("M-s" . xref-find-references)
         ("C-c a" . eglot-format-buffer)))
 
-(use-package sideline-flymake
+(use-package eldoc-box
   :straight t
-  :hook (flymake-mode . sideline-mode)
+  :hook (flymake-mode . eldoc-box-hover-at-point-mode)
   :init
-  (setq sideline-flymake-display-mode 'point)
-  (setq sideline-backends-right '(sideline-flymake)))
+  (setq eldoc-box-max-pixel-width 800)
+  (setq eldoc-box-max-pixel-height 300)
+  (setq eldoc-box-clear-with-C-g t)
+  (setq eldoc-box-cleanup-function #'eldoc-box-hover-at-point-cleanup))
 
 (use-package diff-hl
   :straight t
