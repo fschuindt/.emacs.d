@@ -5,6 +5,7 @@ ido.last
 *~
 tramp
 tree-sitter
+transient
 straight
 *.cache
 *.eld

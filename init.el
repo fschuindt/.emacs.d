@@ -43,6 +43,7 @@
 
   (global-set-key (kbd "C-c k") 'kill-all-buffers))
 
+(straight-use-package 'markdown-mode)
 (straight-use-package 'dockerfile-mode)
 (straight-use-package 'heex-ts-mode)
 
@@ -98,8 +99,47 @@
   :config
   (global-wakatime-mode))
 
+(use-package gptel
+  :straight (gptel :type git :host github :repo "karthink/gptel")
+  :config
+  (defun read-api-key (file)
+    "Read API key from FILE and return it as a string."
+    (with-temp-buffer
+      (insert-file-contents file)
+      (string-trim (buffer-string))))
+
+  (setq gptel-api-key (read-api-key "~/.gptel-openai-chatgpt-api-key"))
+  (setq gptel-model "gpt-4")
+
+  (setq gptel-claude-api-key (read-api-key "~/.gptel-anthropic-claude-api-key"))
+  (setq gptel-claude-backend (gptel-make-anthropic "Claude"
+                                    :stream t
+                                    :key gptel-claude-api-key))
+
+  (defun gptel-switch-to-claude ()
+    "Switch gptel backend to Claude-3."
+    (interactive)
+    (setq gptel-api-key gptel-claude-api-key
+          ;; gptel-model "claude-3-sonnet-20240229"
+          gptel-model "claude-3-opus-20240229"
+          gptel-backend gptel-claude-backend)
+    (message "Switched to Claude-3"))
+
+  (defun gptel-switch-to-gpt4 ()
+    "Switch gptel backend to GPT-4."
+    (interactive)
+    (setq gptel-api-key (read-api-key "~/.gptel-openai-chatgpt-api-key")
+          gptel-model "gpt-4"
+          gptel-backend nil)
+    (message "Switched to GPT-4"))
+
+  (global-set-key (kbd "C-c u") 'gptel-send)
+  (global-set-key (kbd "C-c o") 'gptel)
+  (global-set-key (kbd "C-c l") 'gptel-switch-to-claude)
+  (global-set-key (kbd "C-c m") 'gptel-switch-to-gpt4))
+
 (use-package copilot
-  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+  :straight (:host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
   :ensure t
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
