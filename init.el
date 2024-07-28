@@ -103,8 +103,7 @@
   :ensure t
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
-	      ("<tab>" . copilot-accept-completion)
-	      ("TAB" . copilot-accept-completion)))
+	      ("C-c i" . copilot-accept-completion)))
 
 (straight-use-package 'helm)
 (straight-use-package 'helm-ag)
@@ -163,6 +162,16 @@
         ("M-TAB" . xref-find-definitions)
         ("M-s" . xref-find-references)
         ("C-c a" . eglot-format-buffer)))
+
+(use-package company
+  :straight t
+  :hook ((elixir-mode . company-mode)
+         (company-mode . company-tng-mode))
+  :config
+  (setq company-minimum-prefix-length 1
+        company-idle-delay 0.0)
+  (define-key company-active-map (kbd "C-RET") 'company-complete-selection)
+  (define-key company-active-map (kbd "RET") nil))
 
 (use-package eldoc-box
   :straight t
